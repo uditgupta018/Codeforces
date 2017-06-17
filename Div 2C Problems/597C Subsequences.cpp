@@ -1,3 +1,4 @@
+//2-d Segment Tree
 #include<iostream>
 #include<cstdio>
 #include<algorithm>
@@ -52,6 +53,7 @@ int main(){
 		//             : we use tree[2] to store number of subsequences which end at value 2
 		//But we want number of subsequences of length 1 , 2 ,3 .. (k+1)
 		// So we will use 2-d Segment Tree
+		
 
 	}
 	return 0;
