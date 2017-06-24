@@ -54,15 +54,15 @@ Currently Div2- C.
   now think if we have calculated `dp_prev[][]`, how we can calculate `dp_now[][]`.
   
   So think, we are at tree `(ith)` and <br />
-              * now, we color with 1, <br />
-                      * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
-              * or if we color with 2,<br />
-                      * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
-              .<br />
-              .<br />
-              .<br />
-               * or if we color with n,<br />
-                      * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
+  * now, we color with 1, <br />
+    * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
+  * or if we color with 2,<br />
+    * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
+   .<br />
+   .<br />
+   .<br />
+  * or if we color with n,<br />
+   * what is min cost such beauty is 1 or 2 or 3 ... or i <br />
 
 
 
