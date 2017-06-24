@@ -2,15 +2,19 @@
 #include<stdio.h>
 #include<algorithm>
 
+#define LL long long int
+
 using namespace std;
 
 int main(){
 
 	int trees, num_color, beauty;
-	int color[105], cost[105][105];
-	int dp_prev[105][105], dp_now[105][105];
-	int min_beauty[105][2];
-	int i, j, k, min1, min2, take_value, ans;
+	int color[105];
+	LL cost[105][105];
+	LL dp_prev[105][105], dp_now[105][105]={{-1}};
+	LL min_beauty[105][2];
+	int i, j, k;
+	LL min1, min2, take_value, ans;
 	
 	//taking input
 	cin>>trees>>num_color>>beauty;
@@ -20,6 +24,7 @@ int main(){
 	for(i=1; i<=trees; i++){
 		for(j=1; j<=num_color; j++){
 			cin>>cost[i][j];  //cost is to color ith tree with jth color;
+			dp_now[j][i] = -1;
 		}
 	}
 	
@@ -32,10 +37,24 @@ int main(){
 	//
 	for(j=1; j<=num_color; j++){
 		for(k=1; k<=1; k++){             // since for 1st tree, beauty can be only 1.
-			dp_now[j][k] = cost[1][j]; // hence k <= 1;	
+			if(color[1] == 0){
+				dp_now[j][k] = cost[1][j]; // hence k <= 1;	
 			//for 1st tree , to fill with color j, cost is cost[1][j]
+			}else if(j == color[1]){
+				dp_now[j][k] = 0;
+			}else{
+				dp_now[j][k] = -1;
+			}
 		}
 	}
+	
+	/*for(i=1;i<=num_color;i++){
+		for(j=1;j<=trees;j++){
+			cout<<dp_now[i][j]<<" ";
+		}
+		cout<<"\n";
+	}
+	cout<<"\n";*/
 	
 	for(i=2; i<=trees; i++){
 		//now iterating over all trees.
@@ -50,7 +69,7 @@ int main(){
 		
 		//now init dp_now with -1
 		for(j=1; j<=num_color; j++){
-			for(k=1; k<=1; k++){             // since for 1st tree, beauty can be only 1.
+			for(k=1; k<=trees; k++){             // since for 1st tree, beauty can be only 1.
 				dp_now[j][k] = -1; // hence k <= 1;	
 				//for 1st tree , to fill with color j, cost is cost[1][j]
 			}
@@ -62,9 +81,11 @@ int main(){
 		
 		//finding two minimums in each column
 		//
-		min1 = -1;
-		min2 = -1;
-		for(k=1; k<=i; k++){     //beauty will not be greater than ith tree (i.e i value)
+	
+		for(k=1; k<=trees; k++){     //beauty will not be greater than ith tree (i.e i value)
+			min1 = -1;
+			min2 = -1;
+			
 			for(j=1; j<=num_color; j++){
 				if(dp_prev[j][k] != -1){
 					
@@ -91,6 +112,11 @@ int main(){
 			min_beauty[k][1] = min2;
 		}
 		
+		//debug
+		/*for(j=1; j<=trees; j++){
+			cout<<"min values "<<min_beauty[j][0]<<" "<<min_beauty[j][1]<<"\n";
+		}
+		cout<<"\n";*/
 		
 		//now we need to calc dp_now[][] table for the ith tree (current tree )
 		for(j=1; j<=num_color; j++){
@@ -105,11 +131,11 @@ int main(){
 					min1 = min2 = -1;
 				}
 				
-				if(color[i] != 0){
-					if(k != -1){
+				if(color[i] == 0){
+					if(k != 1){
 									
 						if(dp_prev[j][k-1] != min1){
-							take_value = min1;
+							take_value = min1 ;
 						}else {
 							take_value = min2;
 						}
@@ -117,20 +143,20 @@ int main(){
 					}else {
 						take_value = -1;
 					}
-					
+					//cout<<"consider cases "<<dp_prev[j][k]<<" "<<take_value<<" \n";
 					//consider all cases carefullyy..special when value dont exist for prev treee
 					if((dp_prev[j][k] != -1) && (take_value != -1)){
-						dp_now[j][k] = min(take_value, dp_prev[j][k] + cost[i][j]);	
+						dp_now[j][k] = min(take_value + cost[i][j], dp_prev[j][k] + cost[i][j]);	
 					}else if(take_value != -1){
-						dp_now[j][k] = take_value;
+						dp_now[j][k] = take_value + cost[i][j];
 					}else if(dp_prev[j][k] != -1){
 						dp_now[j][k] = dp_prev[j][k] + cost[i][j];
 					}else{
 						dp_now[j][k] = -1;
 					}
-				}else if(color[i] && j == color[i]){
+				}else if(color[i] != 0 && j == color[i]){
 					
-					if(k != -1){
+					if(k != 1){
 									
 						if(dp_prev[j][k-1] != min1){
 							take_value = min1;
@@ -148,7 +174,7 @@ int main(){
 					}else if(take_value != -1){
 						dp_now[j][k] = take_value;
 					}else if(dp_prev[j][k] != -1){
-						dp_now[j][k] = dp_prev[j][k] + cost[i][j];
+						dp_now[j][k] = dp_prev[j][k];
 					}else{
 						dp_now[j][k] = -1;
 					}
@@ -158,14 +184,29 @@ int main(){
 					dp_now[j][k] = -1;
 				
 				}
+				
+			//	cout<<dp_now[j][k]<<" ";
 			}
+		//	cout<<"\n";
 		}
+		//debug
+		/*for(j=1;j<=num_color;j++){
+			for(k=1;k<=trees;k++){
+				cout<<dp_now[j][k]<<" ";
+			}
+			cout<<"\n";
+		}
+		cout<<"\n";*/
 	}
 	
 	ans = -1;
 	for(i=1; i<=num_color; i++){
 		if(dp_now[i][beauty] != -1){
-			ans = min(ans,dp_now[i][beauty]);
+			if(ans != -1){
+				ans = min(ans,dp_now[i][beauty]);
+			}else{
+				ans = dp_now[i][beauty];
+			}
 		}
 	}
 	cout<<ans;
