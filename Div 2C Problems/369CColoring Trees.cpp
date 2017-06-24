@@ -1,3 +1,4 @@
+//Dp
 #include<iostream>
 #include<stdio.h>
 #include<algorithm>
@@ -40,7 +41,7 @@ int main(){
 			if(color[1] == 0){
 				dp_now[j][k] = cost[1][j]; // hence k <= 1;	
 			//for 1st tree , to fill with color j, cost is cost[1][j]
-			}else if(j == color[1]){
+			}else if(j == color[1]){  //if it is already colored, then dp exists for that color rest = -1
 				dp_now[j][k] = 0;
 			}else{
 				dp_now[j][k] = -1;
@@ -48,6 +49,7 @@ int main(){
 		}
 	}
 	
+	//debug
 	/*for(i=1;i<=num_color;i++){
 		for(j=1;j<=trees;j++){
 			cout<<dp_now[i][j]<<" ";
@@ -80,7 +82,8 @@ int main(){
 		//taking n==1 as edge case ; will consider it seperately
 		
 		//finding two minimums in each column
-		//
+		//for each minimum k we need to find minimum of 
+		//dp[1][k], dp[2][k], dp[3][k], dp[4][k], dp[5][k]......
 	
 		for(k=1; k<=trees; k++){     //beauty will not be greater than ith tree (i.e i value)
 			min1 = -1;
@@ -92,14 +95,18 @@ int main(){
 					//i.e we can color (i-1) the tree with color j such that beauty ending at tree is "k"
 					
 					if(min1 == -1){  //none of min1,min2 exists till now
+					
 						min1 = dp_prev[j][k]; 
+					
 					}else if(min2 == -1){ //if min1 exists but not min2.
+					
 						if(dp_prev[j][k] < min1){
 							min2 = min1;
 							min1 = dp_prev[j][k];
 						}else{
 							min2 = dp_prev[j][k];
 						}
+				
 					}else{ //both exists , then compare logically
 						
 						if(min2 < dp_prev[j][k]){
@@ -136,7 +143,8 @@ int main(){
 					min1 = min2 = -1;
 				}
 				
-				if(color[i] == 0){
+				//consider the cases if current tree is already colored or un-colored
+				if(color[i] == 0){ //if current tree is un-colored
 					if(k != 1){
 									
 						if(dp_prev[j][k-1] != min1){
@@ -159,7 +167,7 @@ int main(){
 					}else{
 						dp_now[j][k] = -1;
 					}
-				}else if(color[i] != 0 && j == color[i]){
+				}else if(color[i] != 0 && j == color[i]){  //if current tree is colored
 					
 					if(k != 1){
 									
