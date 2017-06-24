@@ -27,15 +27,15 @@ Currently Div2- C.
 		  pls read above lines again if not clear. <br />
 		so now wat the equation becomes <br />
 		no of subsequences of length k+1 which end at index i= <br />
-											number of subsequences of length k which end at [value 1] from index range 1  to (i-1) of given array  <br />
-		  							+   number of subsequences of length k which end at [value 2] from index range 1  to (i-1) of given array <br /
-										+   number of subsequences of length k which end at [value 3] from index range 1  to (i-1) of given array <br /
-										+   number of subsequences of length k which end at [value 4] from index range 1  to (i-1) of given array 	<br /
-		For this part we can use Segemnt Tree to compute sum of subsequences ...<br /
-		Segment tree : we use tree[1] to store number of subsequences which end at value 1 <br /
-		             : we use tree[2] to store number of subsequences which end at value 2 <br /
-		But we want number of subsequences of length 1 , 2 ,3 .. (k+1)  <br /
-		 So we will use 2-d Segment Tree   <br /
+		number of subsequences of length k which end at [value 1] from index range 1  to (i-1) of given array  <br />
+	+   number of subsequences of length k which end at [value 2] from index range 1  to (i-1) of given array <br />
+	+   number of subsequences of length k which end at [value 3] from index range 1  to (i-1) of given array <br />
+	+   number of subsequences of length k which end at [value 4] from index range 1  to (i-1) of given array 	<br />
+	For this part we can use Segemnt Tree to compute sum of subsequences ...<br />
+		Segment tree : we use tree[1] to store number of subsequences which end at value 1 <br />
+		             : we use tree[2] to store number of subsequences which end at value 2 <br />
+		But we want number of subsequences of length 1 , 2 ,3 .. (k+1)  <br />
+		 So we will use 2-d Segment Tree   <br />
      
 2) [2) Journey](http://codeforces.com/problemset/problem/721/C)
   - This is graphs problem with DP.
