@@ -22,24 +22,36 @@ Currently Div2- C.
 
 
 3) Coloring Trees - [d](http://codeforces.com/problemset/problem/721/C)
-```
-This is  Dynamic Programming Problem.
-It has lot of corner cases, needs to consider many at each step. Whole beauty of problem lies in writing clean correct solution.
-```
+  ```
+  This is  Dynamic Programming Problem.
+  It has lot of corner cases, needs to consider many at each step.
+  Whole beauty of problem lies in writing clean correct solution.
+  ```
 
-Solution :-
+  Solution :-
 
-`*How to approach and think step wise :-*` <br />
-First think which values are required. ie *State of DP* <br />
+  `*How to approach and think step wise :-*` <br />
+  First think which values are required. ie *State of DP* <br />
 
-Say we are iterating from 1 to n th tree... `Complexity O(100)` <br />
-Now, we need to find answer for ith Tree. <br />
-This means we have calculated all answers for 1, 2, 3 .. (i-1) th tree.<br />
-Now think what all values are required at ith tree.<br />
-We need answer such that we have beauty 1, 2, 3, ...(i) ending at tree i. Hence comlexity now `*O(100*100)*`<br />
-<br />
-But for different colors, how we define value of beauty.<br />
-Hence for each color we will store value of beauty<br />
+  Say we are iterating from 1 to n th tree... `Complexity O(100)` <br />
+  Now, we need to find answer for ith Tree. <br />
+  This means we have calculated all answers for 1, 2, 3 .. (i-1) th tree.<br />
+  Now think what all values are required at ith tree.<br />
+  We need answer such that we have beauty 1, 2, 3, ...(i) ending at tree i. Hence comlexity now `*O(100*100)*`<br />
+  <br />
+  But for different colors, how we define value of beauty.<br />
+  Hence for each color we will store value of beauty<br />
+  
+  Now , it should be clear that what should be dp states.
+  
+  `dp_now[j][k]` will store min cost to color upto all trees till current tree such that
+  min cost to color current tree with color j and such that beauty is k
+  
+  Similarly `dp_prev[j][k]` will store to color prev tree with color j and such that beauty of all 
+  trees ending at prev tree is k.
+  
+  now think if we have calculated `dp_prev[][]`, how we can calculate `dp_now[][]`.
+  
 
 
 
