@@ -66,10 +66,10 @@ Currently Div2- C.
 
   ```
   now how to calculate dp_now[j][k]
-   1) see if we are coloring with same color as of prev tree then beauty will not increase. <br />
-   take the value = dp_prev[j][k]  <br />
-   2) if we are coloring with different color, the beauty increase by 1..and for prev tree consider beauty k-1 and  <br />
-      color values 1,2,3, ...,m except jth color (as we have to take a different color) <br />
+   1) see if we are coloring with same color as of prev tree then beauty will not increase. 
+   take the value = dp_prev[j][k]  
+   2) if we are coloring with different color, the beauty increase by 1..and for prev tree consider beauty k-1 and
+      color values 1,2,3, ...,m except jth color (as we have to take a different color)
       in this case we have to take minimum of all these.
       
    finally take the minimum of step 1 and step 2. 
