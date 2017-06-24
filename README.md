@@ -12,7 +12,7 @@ Currently Div2- C.
 * [3) Coloring Trees](http://codeforces.com/problemset/problem/711/C) `Dp`
 
 ## Tutorials - 
-1) [1) Subsequences](http://codeforces.com/problemset/problem/597/C)
+[1) Subsequences](http://codeforces.com/problemset/problem/597/C)
   ```
    This is DP type problem. Also requires segment trees/BIT. 
    O(nlogn).
@@ -37,13 +37,13 @@ Currently Div2- C.
 		But we want number of subsequences of length 1 , 2 ,3 .. (k+1)  <br />
 		 So we will use 2-d Segment Tree   <br />
      
-2) [2) Journey](http://codeforces.com/problemset/problem/721/C)
+[2) Journey](http://codeforces.com/problemset/problem/721/C)
   - This is graphs problem with DP.
   - Also requires topological sort concept.
   - O(mn).
 
 
-3)[3) Coloring Trees](http://codeforces.com/problemset/problem/711/C)
+[3) Coloring Trees](http://codeforces.com/problemset/problem/711/C)
   ```
   This is  Dynamic Programming Problem.
   It has lot of corner cases, needs to consider many at each step.
