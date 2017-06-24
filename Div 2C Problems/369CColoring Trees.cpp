@@ -8,12 +8,12 @@ using namespace std;
 
 int main(){
 
-	int trees, num_color, beauty;
-	int color[105];
+	LL trees, num_color, beauty;
+	LL color[105];
 	LL cost[105][105];
 	LL dp_prev[105][105], dp_now[105][105]={{-1}};
 	LL min_beauty[105][2];
-	int i, j, k;
+	LL i, j, k;
 	LL min1, min2, take_value, ans;
 	
 	//taking input
@@ -94,7 +94,12 @@ int main(){
 					if(min1 == -1){  //none of min1,min2 exists till now
 						min1 = dp_prev[j][k]; 
 					}else if(min2 == -1){ //if min1 exists but not min2.
-						min2 = dp_prev[j][k]; 
+						if(dp_prev[j][k] < min1){
+							min2 = min1;
+							min1 = dp_prev[j][k];
+						}else{
+							min2 = dp_prev[j][k];
+						}
 					}else{ //both exists , then compare logically
 						
 						if(min2 < dp_prev[j][k]){
