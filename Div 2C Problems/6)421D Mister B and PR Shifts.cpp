@@ -1,4 +1,4 @@
-//Segment tree
+//Segment tree with lazy update
 #include<iostream>
 #include<stdio.h>
 
@@ -7,7 +7,8 @@ using namespace std;
 struct seg{
 	int leftmost, rightmost;
 }lazy_tree[5000005];
-int p[1000005], ans=0;
+int p[1000005];
+int ans, curShift, shiftAns;
 
 void build_segment_tree(int node, int a, int b){
 	if(a<b){
@@ -66,6 +67,7 @@ void update_segment_tree(int node, int a, int b, int l ,int r, int valLeft, int 
 
 void query_segment_tree(int node, int a, int b){
 	int range, leftRange, rightRange, totalNode, leftNode, rightNode;
+	int ansLeft = -1, ansRight = -1;
 	if(a < b){
 		return ;
 	}
@@ -97,9 +99,19 @@ void query_segment_tree(int node, int a, int b){
 	}
 	
 	if(a == b){
-		ans += lazy_tree[node].leftmost;
-		return ;
+		curShift++;
+		if(ans == -1){
+			shiftAns = curShift;
+			ans = lazy_tree[node].leftmost;
+		}else{
+			if(ans > lazy_tree[node].leftmost){
+				ans = lazy_tree[node].leftmost;
+				shiftAns = curShift;
+			}
+		}
+		return;
 	}
+	
 	query_segment_tree(2*node, a, (a+b)/2);
 	query_segment_tree(2*node+1, (a+b)/2+1, b);
 	return ;
@@ -145,9 +157,9 @@ int main(){
 			}
 		}
 	}
-	ans=0;
+	ans = curShift = shiftAns = -1;
 	query_segment_tree(1, 1, n);
-	cout<<ans;
+	cout<<ans<<" "<<shiftAns;
 	
 	return 0;
 }
