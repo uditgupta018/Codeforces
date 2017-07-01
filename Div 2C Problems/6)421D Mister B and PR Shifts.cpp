@@ -1,14 +1,15 @@
 //Segment tree with lazy update
 #include<iostream>
 #include<stdio.h>
-
+#define LL long long int
 using namespace std;
 
 struct seg{
-	int leftmost, rightmost;
+	LL leftmost, rightmost;
 }lazy_tree[7000005];
 int p[1000005];
-int ans, curShift, shiftAns;
+int curShift, shiftAns;
+LL ans;
 
 void build_segment_tree(int node, int a, int b){
 	if(b<a){
@@ -27,8 +28,8 @@ void build_segment_tree(int node, int a, int b){
 
 //a & b represents current range of segment tree.
 //l & r is range into which we want to update.
-void update_segment_tree(int node, int a, int b, int l ,int r, int valLeft, int valRight){
-	int range, leftRange, rightRange, totalNode;
+void update_segment_tree(int node, int a, int b, int l ,int r, LL valLeft, LL valRight){
+	LL range, leftRange, rightRange, totalNode;
 	//debug
 	/*cout<<"a b l r valL val R"<<endl;
 	cout<<a<<" "<<b<<" "<<l<<" "<<r<<" "<<valLeft<<" "<<valRight<<endl<<endl;
@@ -50,37 +51,45 @@ void update_segment_tree(int node, int a, int b, int l ,int r, int valLeft, int 
 	}else if((a+b)/2 < l){ //if our range (l,r) lies completely on Right Tree
 		update_segment_tree(2*node+1, (a+b)/2+1, b, l, r, valLeft, valRight);
 	}else{ //if our range lies on both Left and Right tree.
-		range = r-l+1;
-		leftRange = (a+b)/2-l+1;
+		range = r-l+(LL)1;
+		leftRange = (a+b)/2-l+(LL)1;
 		rightRange = range - leftRange;
 		
-	
+	                  
 		if(valLeft <= valRight){
-			totalNode = valRight-valLeft+1;
-			update_segment_tree(2*node, a, (a+b)/2, l, (a+b)/2, valLeft , valLeft - 1 + (leftRange/range )* totalNode );
-			update_segment_tree(2*node+1, (a+b)/2+1, b, (a+b)/2+1, r, valRight + 1 - ( rightRange/range )*totalNode, valRight) ;	
+			totalNode = valRight-valLeft+(LL)1;
+			update_segment_tree(2*node, a, (a+b)/2, l, (a+b)/2, valLeft , valLeft - (LL)1 + (leftRange* totalNode)/range );
+			update_segment_tree(2*node+1, (a+b)/2+1, b, (a+b)/2+1, r, valRight + (LL)1 - ( rightRange*totalNode)/range, valRight) ;	
 		}else{
-			totalNode = -valRight+valLeft+1;
-			update_segment_tree(2*node, a, (a+b)/2, l, (a+b)/2, valLeft, valRight + 1 - (leftRange/range )* totalNode );
-			update_segment_tree(2*node+1, (a+b)/2+1, b, (a+b)/2+1, r, valLeft - 1 + ( rightRange/range )*totalNode, valRight) ;				
+			totalNode = -valRight+valLeft+(LL)1;
+			update_segment_tree(2*node, a, (a+b)/2, l, (a+b)/2, valLeft, valLeft + (LL)1 - (leftRange* totalNode)/range );
+			update_segment_tree(2*node+1, (a+b)/2+1, b, (a+b)/2+1, r, valRight - (LL)1 + ( rightRange*totalNode)/range, valRight) ;				
 		}
 	}
 	return ;
 }
 
 void query_segment_tree(int node, int a, int b){
-	int range, leftRange, rightRange, totalNode, leftNode, rightNode;
-	int ansLeft = -1, ansRight = -1;
+	LL range, leftRange, rightRange, totalNode, leftNode, rightNode;
+	LL ansLeft = -1, ansRight = -1, diff;
 	if(b < a){
 		return ;
 	}
 
 	if(a != b){ //not a leaf node;
 		
-		totalNode = b-a+1;
-		leftNode = (a+b)/2-a+1;
+		totalNode = b-a+(LL)1;
+		leftNode = (a+b)/2-a+(LL)1;
 		rightNode = totalNode - leftNode;
 		
+		diff = (lazy_tree[node].rightmost - lazy_tree[node].leftmost)/(b-a);
+		lazy_tree[2*node].leftmost += lazy_tree[node].leftmost; 
+		lazy_tree[2*node].rightmost += lazy_tree[node].leftmost + ((b+a)/2-a)*diff;
+		lazy_tree[2*node+1].leftmost += lazy_tree[node].leftmost + ((a+b)/2-a+(LL)1)*diff;
+		lazy_tree[2*node+1].rightmost += lazy_tree[node].rightmost;
+		
+		
+		/*
 		if(lazy_tree[node].leftmost <= lazy_tree[node].rightmost){
 			range = lazy_tree[node].rightmost - lazy_tree[node].leftmost;
 			leftRange = lazy_tree[node].leftmost + ((leftNode-1)/totalNode)*range;
@@ -97,7 +106,7 @@ void query_segment_tree(int node, int a, int b){
 			lazy_tree[2*node].rightmost += leftRange;
 			lazy_tree[2*node+1].leftmost += rightRange;
 			lazy_tree[2*node+1].rightmost += lazy_tree[node].rightmost;
-		}
+		}*/
 		
 	}
 	
@@ -119,8 +128,9 @@ void query_segment_tree(int node, int a, int b){
 	query_segment_tree(2*node+1, (a+b)/2+1, b);
 	return ;
 }
+
 void debug(){
-	for(int i=1; i<=5; i++){
+	for(int i=1; i<=19; i++){
 		cout<<"node";
 		cout<<i<<"range "<<lazy_tree[i].leftmost<<" "<<lazy_tree[i].rightmost<<endl;
 	}
@@ -167,9 +177,12 @@ int main(){
 				update_segment_tree(1, 0, n-1, n-i+1+p[i], n-1, 1, i-1-p[i]);
 			}
 		}
-	//	debug();
+		/*debug();
+		cout<<endl<<endl;*/
 	}
+	
 	ans = curShift = shiftAns = -1;
+	//cout<<endl;debug();
 	query_segment_tree(1, 0, n-1);
 	//cout<<endl;debug();
 	cout<<ans<<" "<<shiftAns;
