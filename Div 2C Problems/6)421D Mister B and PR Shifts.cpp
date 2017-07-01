@@ -6,12 +6,12 @@ using namespace std;
 
 struct seg{
 	int leftmost, rightmost;
-}lazy_tree[5000005];
+}lazy_tree[7000005];
 int p[1000005];
 int ans, curShift, shiftAns;
 
 void build_segment_tree(int node, int a, int b){
-	if(a<b){
+	if(b<a){
 		return ;
 	}
 	if(a == b){
@@ -29,8 +29,11 @@ void build_segment_tree(int node, int a, int b){
 //l & r is range into which we want to update.
 void update_segment_tree(int node, int a, int b, int l ,int r, int valLeft, int valRight){
 	int range, leftRange, rightRange, totalNode;
-	
-	if(a<b){
+	//debug
+	/*cout<<"a b l r valL val R"<<endl;
+	cout<<a<<" "<<b<<" "<<l<<" "<<r<<" "<<valLeft<<" "<<valRight<<endl<<endl;
+	*/
+	if(b<a){
 		return ;
 	}	
 	if(b < l || a > r){
@@ -68,7 +71,7 @@ void update_segment_tree(int node, int a, int b, int l ,int r, int valLeft, int 
 void query_segment_tree(int node, int a, int b){
 	int range, leftRange, rightRange, totalNode, leftNode, rightNode;
 	int ansLeft = -1, ansRight = -1;
-	if(a < b){
+	if(b < a){
 		return ;
 	}
 
@@ -79,17 +82,17 @@ void query_segment_tree(int node, int a, int b){
 		rightNode = totalNode - leftNode;
 		
 		if(lazy_tree[node].leftmost <= lazy_tree[node].rightmost){
-			range = lazy_tree[node].rightmost - lazy_tree[node].leftmost + 1;
-			leftRange = lazy_tree[node].leftmost + (leftNode/totalNode)*range - 1;
-			rightRange = lazy_tree[node].rightmost - (rightNode/totalNode)*range + 1;
+			range = lazy_tree[node].rightmost - lazy_tree[node].leftmost;
+			leftRange = lazy_tree[node].leftmost + ((leftNode-1)/totalNode)*range;
+			rightRange = lazy_tree[node].rightmost - ((rightNode-1)/totalNode)*range;
 			lazy_tree[2*node].leftmost += lazy_tree[node].leftmost; 
 			lazy_tree[2*node].rightmost += leftRange;
 			lazy_tree[2*node+1].leftmost += rightRange;
 			lazy_tree[2*node+1].rightmost += lazy_tree[node].rightmost;
 		}else{
-			range = lazy_tree[node].leftmost - lazy_tree[node].rightmost + 1;
-			leftRange = lazy_tree[node].rightmost - (leftNode/totalNode)*range + 1;
-			rightRange = lazy_tree[node].leftmost + (rightNode/totalNode)*range - 1;
+			range = lazy_tree[node].leftmost - lazy_tree[node].rightmost;
+			leftRange = lazy_tree[node].leftmost - ((leftNode-1)/totalNode)*range;
+			rightRange = lazy_tree[node].rightmost + ((rightNode-1)/totalNode)*range;
 			lazy_tree[2*node].leftmost += lazy_tree[node].leftmost; 
 			lazy_tree[2*node].rightmost += leftRange;
 			lazy_tree[2*node+1].leftmost += rightRange;
@@ -116,49 +119,59 @@ void query_segment_tree(int node, int a, int b){
 	query_segment_tree(2*node+1, (a+b)/2+1, b);
 	return ;
 }
+void debug(){
+	for(int i=1; i<=5; i++){
+		cout<<"node";
+		cout<<i<<"range "<<lazy_tree[i].leftmost<<" "<<lazy_tree[i].rightmost<<endl;
+	}
+}
 int main(){
 	int n, i, lastIdx;
 	cin>>n;
 	for(i=1; i<=n; i++){
-		cin>>p[i];
+		//cin>>p[i];
+		scanf("%d",&p[i]);
 	}
-	
+	build_segment_tree(1, 0, n-1);
 	for(i=1; i<=n; i++){
 		if(p[i] >= i){
 			//range value (p[i]-i,0)
 			//range indexes (0,p[i]-i)
 			lastIdx = p[i]-i;
-			update_segment_tree(1, 1, n, i-1, p[i]-i, p[i]-i, 0);
+			update_segment_tree(1, 0, n-1, 0, p[i]-i, p[i]-i, 0);
+	//		cout<<"came back 1.1"<<endl;
 			if(p[i] < n){
 				//range value (1, n-p[i])
 				//range indexes (p[i]-i+1,-i+ n)`
-				lastIdx = n-i;;
-				update_segment_tree(1, 1, n, p[i]-i+1, n-i, 1, n-p[i]);
+				lastIdx = n-i;
+				update_segment_tree(1, 0, n-1, p[i]-i+1, n-i, 1, n-p[i]);
 			}
 			if(i > 1){
 				//range value (p[i]-1,p[i]-(i-1))
 				//range indexes (lastIdx+1,n-1)
-				update_segment_tree(1, 1, n, lastIdx+1, n-1, p[i]-1,p[i]-(i-1));
+				update_segment_tree(1, 0, n-1, lastIdx+1, n-1, p[i]-1,p[i]-(i-1));
 			}
 		
 		}else if(p[i] < i){
 			//range value (-p[i]+i,n-p[i])
 			//range indexes (0,n-i)
-			update_segment_tree(1, 1, n, 0, n-i, i-p[i], n-p[i]);
+			update_segment_tree(1, 0, n-1, 0, n-i, i-p[i], n-p[i]);
 			
 			//range value (p[i]-1,0)
 			//range indexes (n-i+1,n-i+p[i])
-			update_segment_tree(1, 1, n, n-i+1, n-i+p[i], p[i]-1, 0);
+			update_segment_tree(1, 0, n-1, n-i+1, n-i+p[i], p[i]-1, 0);
 			
 			if(i-p[i]>1){
 				//range value (1,i-1-p[i]);
 				//range indexes (n-i+1+p[i],n)
-				update_segment_tree(1, 1, n, n-i+1+p[i], n, 1, i-1-p[i]);
+				update_segment_tree(1, 0, n-1, n-i+1+p[i], n-1, 1, i-1-p[i]);
 			}
 		}
+	//	debug();
 	}
 	ans = curShift = shiftAns = -1;
-	query_segment_tree(1, 1, n);
+	query_segment_tree(1, 0, n-1);
+	//cout<<endl;debug();
 	cout<<ans<<" "<<shiftAns;
 	
 	return 0;
