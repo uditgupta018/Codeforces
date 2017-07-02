@@ -24,7 +24,7 @@ Purpose of this tutorial is to help you find your solution and not just giving t
 * [MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3)  <br/>
   You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
   
-  ![ALt Text](//Solution Images/4) Mister B and PR Shifts/1)Image 1.jpg?raw=true)
+  ![ALt Text](Solution Images/4 Mister B and PR Shifts/1 Image 1.jpg)
 
 
 
