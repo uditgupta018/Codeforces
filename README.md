@@ -28,7 +28,7 @@ Purpose of this tutorial is to help you find your solution and not just giving t
  Now we will consider with above example. Hope this example is self explanatory.
  Now think how you can exploit this concept of adding a value in a range. Try yourself. Think in terms of segment tree.
  
- Now step two - Thinking how actually this problem is adding in a range problem. 
+ <b>Now step two - Thinking how actually this problem is adding in a range problem. </b> 
  
  ![Text](https://user-images.githubusercontent.com/26462566/27768833-3209fb0a-5f3a-11e7-8a84-e5a520a56c97.jpg) <br/>
  <br/>
