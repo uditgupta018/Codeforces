@@ -30,12 +30,30 @@ Purpose of this tutorial is to help you find your solution and not just giving t
  
  Now step two - Thinking how actually this problem is adding in a range problem. 
  
- ![Text](https://user-images.githubusercontent.com/26462566/27768833-3209fb0a-5f3a-11e7-8a84-e5a520a56c97.jpg)
+ ![Text](https://user-images.githubusercontent.com/26462566/27768833-3209fb0a-5f3a-11e7-8a84-e5a520a56c97.jpg) <br/>
+ <br/>
+ ```
  Consider example -  <br/>
           P1 P2 P3 P4 P5 P6 P7 P8 P9 P10<br/>
-	  8  3  5  4  7  9  10 1  2  6   <br />
+	  8  3  5  7  4  9  10 1  2  6   <br />
  Think all the case i.e. in what range we add to what values. ? Try yourself. <br/>	  
+ Case 1. p[i] >= i <br/>
+         Take p[4] = 7<br/>
+	 for shift id             Id0   Id1  Id2  Id3  Id4  Id5 Id6  Id7  Id8  Id9<br/>
+	 value which is to be <br/>
+	 added  -->               3     2    1    0    1    2   3    6    5    4<br/>
+	 <br/>
+	 (hope you understands this. !!!!)   bingo go ahead...<br/>
+	 deduction now <br/>
+	  <br/>
+	  Case 1.1   We have to add values (3, 2, 1, 0) for shift id range (0, 1, 2, 3)<br/>
+	  Case 1.2   We have to add values (1, 2, 3, 0) for shift id range (4, 5, 6)<br/>
+	  Case 1.3   We have to add values (6, 5, 4) for shift id range (7, 8, 9)<br/>
+ Case 2. p[i] < i <br/>
+         Try yourself. Code will help. Code is commented. Please see if you are struck. <br/>
 	  
+
+```	  
  
  ```
  So now we have to add a arithmetic progression in some range in a segment tree.
