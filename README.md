@@ -71,7 +71,30 @@ Purpose of this tutorial is to help you find your solution and not just giving t
  Total time complexity O(nLogn).
  ```
  <b> Step 3 - Adding Arithmetic Progression to Segment Tree using Segment Tree with Lazy propogation. </b>  
- 
+  
+  ![text](https://user-images.githubusercontent.com/26462566/27769389-eb92e45a-5f45-11e7-99a9-97ca938bdaa5.jpg)
+  
+  ```
+  Now, consider a segment tree with 0-7 as nodes. i.e. it means we have shift id from 0 to 7. leaves represents 
+  value to be added for shift id 0,1,2,3...,7.  
+  Now if we have updation query to add values (0,1,2,3) in range (2,5) of segment tree.
+  Refer to above diagram.
+  we are splittng range (2,5) in two parts 1. range(2,3) 2. range(4,5) ie there are 4 nodes and 2 nodes in both 
+  left & right tree.
+  So, value(0,3) also has to be splitted in same way.
+  So Left Tree range(2,3)
+               value(0,1)
+     Right Tree range(4,5)
+               value(2,3).
+  
+  General formulae :-
+  we have range(l,r) in which we have to update.
+          value as (valueLeft, valueRight) values to be updated
+	  (a,b) current range in our segment tree
+	  
+  
+  ```
+  
  
 ----------------------------------------------------------------------------------------------------------------------------------------
 [1) Subsequences](http://codeforces.com/problemset/problem/597/C)
