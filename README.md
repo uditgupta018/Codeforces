@@ -92,8 +92,22 @@ Purpose of this tutorial is to help you find your solution and not just giving t
           value as (valueLeft, valueRight) values to be updated
 	  (a,b) current range in our segment tree
 	  
+	  N = number of nodes in (l,r) = r - l +1
+	  this N also is number values in AP in (valueLeft, valueRight)
+	  valueLeft + (N-1)*Difference = valueRight
+	  Difference = (valueRight - valueLeft) / (N-1). //Corner case if N==1.
+	  so now we have to split (l,r) in two parts having 
+	  Leftnodes = (a+b)/2 - l + 1
+	  Rightnodes = (r- (a+b)/2).
+	  
+	                                            (valueLeft,valueRight)
+				                              |
+	                        	  ----------------    |   ----------------------
+	(valueLeft, valueLeft+(Leftnodes-1)*Difference )	         (valueLeft+(Leftnodes)*Difference, valueRight)	
+
   
   ```
+  My solution with comments :- [Accepted Submission](http://codeforces.com/contest/819/submission/28197900)
   
  
 ----------------------------------------------------------------------------------------------------------------------------------------
