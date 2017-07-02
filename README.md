@@ -25,6 +25,7 @@ Purpose of this tutorial is to help you find your solution and not just giving t
   You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
   
   ![ALt Text](/Solution Images/1 Image 1.jpg)
+  ![Alt text](https://user-images.githubusercontent.com/26462566/27768658-46f17eb6-5f36-11e7-8c24-d1ff7072dcd8.jpg)
 
 
 
