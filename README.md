@@ -24,10 +24,12 @@ Purpose of this tutorial is to help you find your solution and not just giving t
 * [MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3)  <br/>
   You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
   
-  ![ALt Text](/Solution Images/1 Image 1.jpg)
   ![Alt text](https://user-images.githubusercontent.com/26462566/27768658-46f17eb6-5f36-11e7-8c24-d1ff7072dcd8.jpg)
-
-
+ Now we will consider with above example. Hope this example is self explanatory.
+ Now think how you can exploit this concept of adding a value in a range. Try yourself. Think in terms of segment tree.
+ 
+ Now step two - Thinking how actually this problem is adding in a range problem. 
+ 
 
 [1) Subsequences](http://codeforces.com/problemset/problem/597/C)
   ```
