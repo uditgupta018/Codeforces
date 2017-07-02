@@ -20,9 +20,11 @@ Then come back to this problem. This problem is a classic implementation of Segm
 Purpose of this tutorial is to help you find your solution and not just giving the solutions.
 ```
 * [Flipcoin Codechef](https://www.codechef.com/problems/FLIPCOIN) <br/>
-#### You can read my commented code for this flipcoin (https://www.codechef.com/viewsolution/4341486)
+  You can read my commented code for this flipcoin (https://www.codechef.com/viewsolution/4341486)
 * [MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3)  <br/>
-#### You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
+  You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
+  
+  
 
 
 
