@@ -1,4 +1,4 @@
-# Codeforces Problems Tutorials 
+ Problems Tutorials 
 This repo contains problems solved on Codeforces (competitive programming).
 Also to provide tutorials for these problems.
 
@@ -7,11 +7,23 @@ Currently Div2- C.
 
 ## Problem Contents - 
 ### Div 2-C 
-* [1) Subsequences](http://codeforces.com/problemset/problem/597/C) `Dp` `Segnment Tree`
+* [1) Subsequences](http://codeforces.com/problemset/problem/597/C) `Dp` `Segment Tree`
 * [2) Journey](http://codeforces.com/problemset/problem/721/C) `Dp` `Graphs` `Topological Sort`
 * [3) Coloring Trees](http://codeforces.com/problemset/problem/711/C) `Dp`
-
+* [4) Mister b and PR Shifts](http://codeforces.com/problemset/problem/820/D) `Segment Tree` `Lazy Update`
 ## Tutorials - 
+[4) Mister b and PR Shifts](http://codeforces.com/problemset/problem/820/D)
+```
+If your are familier with concept of Segment Trees with Lazy Update, Please go ahead and read the solution. 
+If not, please do these two classic simple problems of Segment Trees with Lazy Update on Codchef. Then come back to this problem.
+This problem is a classic implementation of Segment Trees.
+Purpose of this tutorial is to help you find your solution and not just giving the solutions.
+```
+*[Flipcoin Codechef](https://www.codechef.com/problems/FLIPCOIN)
+####You can read me commented code for this flipcoin (https://www.codechef.com/viewsolution/4341486)
+*[MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3) 
+####You can read me commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
+
 [1) Subsequences](http://codeforces.com/problemset/problem/597/C)
   ```
    This is DP type problem. Also requires segment trees/BIT. 
