@@ -57,7 +57,20 @@ Purpose of this tutorial is to help you find your solution and not just giving t
  
  ```
  So now we have to add a arithmetic progression in some range in a segment tree.
+  ```
+ Adding some value to Segment tree is direct problem. Now think how we can add AP to ST.
+ Before going to this, please evaluate what must be final answer and time complexity.
+ 
  ```
+ Since leaves store the value which are added to a particular shift. 
+ 	Like 1st leave store value to be added for 0 shift.
+	     2nd leave store value to be added for 1st shift.
+ Hence we need to take the minimum of all leaves.
+ Therefore query segment tree once in the end. 
+ Updating Segment tree is O(Logn)
+ Total time complexity O(nLogn).
+ ```
+ <b> Step 3 - Adding Arithmetic Progression to Segment Tree using Segment Tree with Lazy propogation. </b>  
  
  
 
