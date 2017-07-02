@@ -12,17 +12,17 @@ Currently Div2- C.
 * [3) Coloring Trees](http://codeforces.com/problemset/problem/711/C) `Dp`
 * [4) Mister B and PR Shifts](http://codeforces.com/problemset/problem/820/D) `Segment Tree` `Lazy Update`
 ## Tutorials - 
-[4) Mister b and PR Shifts](http://codeforces.com/problemset/problem/820/D)
+[4) Mister B and PR Shifts](http://codeforces.com/problemset/problem/820/D)
 ```
-If your are familier with concept of Segment Trees with Lazy Update, Please go ahead and read the solution. <br/> 
-If not, please do these two classic simple problems of Segment Trees with Lazy Update on Codchef. <br/>
-Then come back to this problem. This problem is a classic implementation of Segment Trees. <br/>
-Purpose of this tutorial is to help you find your solution and not just giving the solutions.<br/>
+If your are familier with concept of Segment Trees with Lazy Update, Please go ahead and read the solution. 
+If not, please do these two classic simple problems of Segment Trees with Lazy Update on Codchef. 
+Then come back to this problem. This problem is a classic implementation of Segment Trees. 
+Purpose of this tutorial is to help you find your solution and not just giving the solutions.
 ```
-* [Flipcoin Codechef](https://www.codechef.com/problems/FLIPCOIN)
-####You can read my commented code for this flipcoin (https://www.codechef.com/viewsolution/4341486)
-* [MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3) 
-####You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
+* [Flipcoin Codechef](https://www.codechef.com/problems/FLIPCOIN) <br/>
+#### You can read my commented code for this flipcoin (https://www.codechef.com/viewsolution/4341486)
+* [MultQ3 Codechef](https://www.codechef.com/problems/MULTQ3)  <br/>
+#### You can read my commented code for this MultQ3 (https://www.codechef.com/viewsolution/4342905)
 
 
 
