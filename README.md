@@ -73,7 +73,7 @@ Purpose of this tutorial is to help you find your solution and not just giving t
  <b> Step 3 - Adding Arithmetic Progression to Segment Tree using Segment Tree with Lazy propogation. </b>  
  
  
-
+----------------------------------------------------------------------------------------------------------------------------------------
 [1) Subsequences](http://codeforces.com/problemset/problem/597/C)
   ```
    This is DP type problem. Also requires segment trees/BIT. 
