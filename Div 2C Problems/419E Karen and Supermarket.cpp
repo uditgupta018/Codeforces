@@ -13,10 +13,10 @@ vector<int> vec2[50005];
 int dp_nrml[5005][5005], dp_disc[5005][5005];
 int sorted_array[5005][5005];
 
-void dfs(int src){
+void dfs1(int src){
 	
 	int i, j, edges, child, cost, discount, child_cost, child_discount;
-	int cur_sorted_array[5005];
+	int cur_sorted_array[5005], num1, num2;
 	pair<int, pair<int,int> >p;
 	edges = vec2[src].size();
 	p = vec1[src][0];
@@ -24,13 +24,13 @@ void dfs(int src){
 	discount  = p.second.second;
 	
 	//setting things for current root Node.
-	sorted[src][0] = cur_sorted_array[src][0] = 1;   //size of subtree including root vertex.
-	sorted[src][1] = cur_sorted_array[src][1] = src;
+	sorted_array[src][0] = cur_sorted_array[0] = 1;   //size of subtree including root vertex.
+	sorted_array[src][1] = cur_sorted_array[1] = cost;
 	//leaf node
 	if(edges == 0){
 		
 		dp_nrml[src][1] = cost;
-		dp_disc[src][1] = discount;
+	
 		
 		return ;
 		
@@ -81,6 +81,45 @@ void dfs(int src){
 	return ;
 }
 
+void dfs2(int src){
+	int i,j,k,edges, child, cost, discount, child_cost, child_discount;
+	pair<int, pair<int,int> >p;
+	edges = vec2[src].size();
+	p = vec1[src][0];
+	cost = p.second.first;
+	discount  = p.second.second;
+	dp_discount[src][1] = cost-discount;
+	if(edges == 0){
+		dp_discount[src][1] = cost-discount;
+		return ;
+	}
+	
+	child_num=1;
+	nodes = 0;
+	for(i=0; i<edges; i++){
+		child = vec2[src][i];
+		dfs2(child);
+		
+		if(i==0){
+			nodes = sorted_array[child][0];
+			for(i=1;i<=nodes;i++){
+				dp_temp[1] = min(dp_discount[child][i],dp_nrml[child][i]);
+			}
+		}else{
+			n1 = nodes;
+			n2 = sorted_array[child][0];
+			for(i=1;i<=n1+n2;i++){
+				for(j=0;j<=i&&j<=min(n1,n2);j++){
+					temp1 = min(dp_discount[child][j],dp_nrml[child][j]);
+					temp1 min(temp1, dp_temp[i-j]);
+				}
+			}
+		}
+	
+	
+	
+}
+
 void init(){
 	int i, j;
 	for(i=0; i<=5005; i++){
@@ -111,5 +150,6 @@ int main(){
 		vec1[i].pb(mp(x, mp(cost, discount)));
 	}
 	dfs(1);
+	dfs2(1);
 	return 0;
 }
